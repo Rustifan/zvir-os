@@ -110,7 +110,7 @@ ata_lba_read:
     jz .try_again
 
     mov ecx, 256
-    mov dx, 0x1f
+    mov dx, 0x1F0
     rep insw
     pop ecx
     loop .next_sector
