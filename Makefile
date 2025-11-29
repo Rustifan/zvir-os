@@ -3,6 +3,8 @@ FILES = ./build/kernel.asm.o
 all: ./build/boot.bin ./bin/kernel.bin
 	rm -f ./bin/os.bin
 	dd if=./bin/boot.bin >> ./bin/os.bin
+	dd if=./bin/kernel.bin >> ./bin/os.bin
+	dd if=/dev/zero bs=512 count=100 >> ./bin/os.bin
 
 ./build/boot.bin: ./src/boot/boot.asm
 	nasm -f bin ./src/boot/boot.asm -o ./bin/boot.bin

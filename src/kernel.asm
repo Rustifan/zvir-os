@@ -1,8 +1,9 @@
 CODE_SEG equ 0x0b
 DATA_SEG equ 0x10
+global _start
 
 [BITS 32]
-load32:
+_start:
     mov ax, DATA_SEG
     mov ds, ax
     mov es, ax
