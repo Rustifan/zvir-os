@@ -18,3 +18,4 @@ all: ./build/boot.bin ./bin/kernel.bin
 
 clean: 
 	rm -rf ./bin/*
+	rm -rf ./build/*
