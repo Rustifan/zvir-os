@@ -3,8 +3,10 @@
 
 #include <stdint.h>
 
-const int VGA_WIDTH = 80;
-const int VGA_HEIGHT = 20;
+#define VGA_WIDTH 80
+#define VGA_HEIGHT 20
+
 void kernel_main();
 
+void print(const char* str);
 #endif // KERNEL_H
