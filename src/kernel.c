@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "./idt/idt.h"
+#include "./io/io.h"
 
 uint16_t terminal_x = 0;
 uint16_t terminal_y = 0;
@@ -67,6 +68,7 @@ void kernel_main()
 {
     init_screen();
     idt_init();
+    outb(0x60, 0xff);
 
     print("Hello Zviradi\nZeldosaurus");
 }
