@@ -2,7 +2,6 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "./idt/idt.h"
-#include "./io/io.h"
 
 uint16_t terminal_x = 0;
 uint16_t terminal_y = 0;
