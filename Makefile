@@ -34,5 +34,6 @@ all: ./build/boot.bin ./bin/kernel.bin
 	i686-elf-gcc ${INCLUDES} ${FLAGS} -std=gnu99 -c ./src/memory/memory.c -o ./build/memory/memory.o
 
 clean:
-	rm -rf ./bin/**/*.bin
+	rm -rf ./bin/*.bin
 	rm -rf ./build/**/*.o
+	rm -rf ./build/*.o
