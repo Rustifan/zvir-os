@@ -1,7 +1,9 @@
 #include "kernel.h"
+#include "./idt/idt.h"
+#include "memory/heap/heap.h"
+#include "memory/heap/kheap.h"
 #include <stddef.h>
 #include <stdint.h>
-#include "./idt/idt.h"
 
 uint16_t terminal_x = 0;
 uint16_t terminal_y = 0;
@@ -29,7 +31,8 @@ void terminal_put_char(uint16_t x, uint16_t y, char c, char color)
 
 void write_char(char c, char color)
 {
-    if (c == '\n') {
+    if (c == '\n')
+    {
         terminal_x = 0;
         terminal_y++;
         return;
@@ -66,7 +69,18 @@ void init_screen()
 void kernel_main()
 {
     init_screen();
+    kheap_init();
     idt_init();
+
+    void* ptr = kmalloc(50);
+    void* ptr2 = kmalloc(5000);
+    void* ptr3 = kmalloc(1000000);
+    kfree(ptr);
+
+    void* ptr4 = kmalloc(59);
+
+    if (ptr2 || ptr || ptr3 || ptr4) {}
+
 
     print("Hello Zviradi\nZeldosaurus");
 }
