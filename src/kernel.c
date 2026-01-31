@@ -71,6 +71,7 @@ void kernel_main()
     init_screen();
     kheap_init();
     idt_init();
+    enable_interupts();
 
     void* ptr = kmalloc(50);
     void* ptr2 = kmalloc(5000);

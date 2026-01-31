@@ -28,8 +28,6 @@ _start:
     ; End remap master PIC
 
 
-    ; Enable interupts
-    sti
     call kernel_main
 
     jmp $
