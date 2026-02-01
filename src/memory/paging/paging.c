@@ -14,9 +14,9 @@ struct paging_4gb_chunk* paging_new_4gb(uint8_t flags)
         uint32_t* entry = kzalloc(sizeof(uint32_t) * PAGING_TOTAL_ENTRIES_PER_TABLE);
         for (int b = 0; b < PAGING_TOTAL_ENTRIES_PER_TABLE; ++b)
         {
-            entry[b] = (offset + (b * PAGING_PAGEE_SIZE)) | flags;
+            entry[b] = (offset + (b * PAGING_PAGE_SIZE)) | flags;
         }
-        offset += (PAGING_TOTAL_ENTRIES_PER_TABLE * PAGING_PAGEE_SIZE);
+        offset += (PAGING_TOTAL_ENTRIES_PER_TABLE * PAGING_PAGE_SIZE);
         directory[i] = (uint32_t)entry | flags | PAGING_IS_WRITEABLE;
     }
     struct paging_4gb_chunk* chunk_4gb = kzalloc(sizeof(struct paging_4gb_chunk));
