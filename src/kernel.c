@@ -1,9 +1,10 @@
 #include "kernel.h"
 #include "./idt/idt.h"
-#include "memory/heap/heap.h"
 #include "memory/heap/kheap.h"
+#include "memory/paging/paging.h"
 #include <stddef.h>
 #include <stdint.h>
+
 
 uint16_t terminal_x = 0;
 uint16_t terminal_y = 0;
@@ -65,23 +66,16 @@ void init_screen()
         video_mem[i] = make_char(' ', 0);
     }
 }
-
+struct paging_4gb_chunk* kernel_chunk = 0;
 void kernel_main()
 {
     init_screen();
+    print("Zviradi");
     kheap_init();
     idt_init();
+    kernel_chunk = paging_new_4gb(PAGING_IS_WRITEABLE | PAGING_IS_PRESENT | PAGING_ACCESS_FROM_ALL);
+    paging_switch(paging_4gb_chunk_get_directory(kernel_chunk));
+    enable_paging();
     enable_interupts();
 
-    void* ptr = kmalloc(50);
-    void* ptr2 = kmalloc(5000);
-    void* ptr3 = kmalloc(1000000);
-    kfree(ptr);
-
-    void* ptr4 = kmalloc(59);
-
-    if (ptr2 || ptr || ptr3 || ptr4) {}
-
-
-    print("Hello Zviradi\nZeldosaurus");
 }
