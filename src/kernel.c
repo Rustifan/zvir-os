@@ -81,4 +81,5 @@ void kernel_main()
     disk_read_sector(0, 1, buf);
 
     enable_interupts();
+    // kokolo
 }
